@@ -11,7 +11,7 @@
 <body class="bg-secondary">
     <div class="container d-flex flex-column align-items-center justify-content-center">
         <div class="mt-4">
-            <form action="http://localhost:3000/create-story" method="post">
+            <form action="/create-story" method="post">
                 <input type="text" class="bg-dark text-white p-2 rounded-3" name="title" style="width: 24em;" placeholder="Title"><br><br>
                 <button type="submit" class="bg-dark text-white p-2 rounded-3" style="width: 7em;">Create </button><br><br>
                
@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         let allStories = [];
-        axios.get('http://localhost:3000/stories').then(response => {
+        axios.get('/stories').then(response => {
             const stories = response.data;
             allStories = stories;
             const storiesContainer = document.getElementById('stories');
@@ -62,7 +62,7 @@
 
       
     function deleteStory(id) {
-      fetch('http://localhost:3000/delete-story/' + id, { method: 'DELETE' })
+      fetch('/delete-story/' + id, { method: 'DELETE' })
         .catch(error => console.error('Error:', error));
     }
 
@@ -90,7 +90,7 @@
         document.getElementById('updateStory').innerHTML = '';
         const story = allStories.find(st => st.id === id);
         const storyid = story.id;
-        const action = "http://localhost:3000/update-story/" + storyid;
+        const action = "/update-story/" + storyid;
         document.getElementById('updateStory').innerHTML = `
         <form action=${action} method="post">
         <h2>Update Story</h2>
